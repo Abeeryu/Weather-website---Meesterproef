@@ -1,7 +1,10 @@
 <script>
+import { supabase } from '$lib/supabaseClient';
+
   let city = $state('');
   let weather = $state(null);
   let error = $state('');
+  let favorites = $state([]);
 
   async function getWeather(event) {
     event.preventDefault();
@@ -27,6 +30,56 @@
 
     weather = data;
   }
+  
+  
+async function loadFavorites() {
+  const { data, error } = await supabase
+    .from('favorite_cities')
+    .select('*')
+    .order('created_at', { ascending: false });
+
+  if (!error) {
+    favorites = data;
+  }
+}
+
+loadFavorites();
+
+async function saveCity() {
+  if (!weather) return;
+
+  // check if already exists
+  const exists = favorites.some(
+    (f) => f.city.toLowerCase() === weather.name.toLowerCase()
+  );
+
+  if (exists) return;
+
+  const { error } = await supabase
+    .from('favorite_cities')
+    .insert([
+      { city: weather.name }
+    ]);
+
+  if (!error) {
+    loadFavorites();
+  }
+}
+
+async function deleteCity(id) {
+  console.log("DELETE CLICKED", id);
+  const { error } = await supabase
+    .from('favorite_cities')
+    .delete()
+    .eq('id', id);
+
+  if (error) {
+    console.error(error);
+    return;
+  }
+
+  loadFavorites();
+}
 </script>
 
 <div class="app">
@@ -51,7 +104,25 @@
       <p>{weather.weather[0].description}</p>
       <p>{weather.wind.speed} m/s</p>
     </div>
+    <button onclick={saveCity}>
+   Save city
+</button>
   {/if}
+
+  
+<h2>Favorite Cities</h2>
+
+<div class="grid">
+  {#each favorites as fav}
+    <div class="city-card">
+      <span>{fav.city}</span>
+
+      <button class="delete-btn" onclick={() => deleteCity(fav.id)}>
+        🗑️
+      </button>
+    </div>
+  {/each}
+</div>
 </div>
 
 <!-- (MOBILE FIRST) -->
@@ -114,6 +185,28 @@
     font-size: 2rem;
     font-weight: bold;
   }
+
+.city-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px;
+  border-radius: 12px;
+  background: white;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+.delete-btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+  transition: 0.2s;
+}
+
+.delete-btn:hover {
+  transform: scale(1.2);
+}
 
   /* 📱 TABLET + DESKTOP */
   @media (min-width: 600px) {
