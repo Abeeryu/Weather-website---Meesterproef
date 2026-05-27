@@ -57,13 +57,6 @@
     }
   }
 
-  .empty {
-    text-align: center;
-    color: #94a3b8;
-    margin-top: 15px;
-    font-size: 14px;
-  }
-
   @media (prefers-color-scheme: dark) {
     .favorite-city {
       background: #111827;
