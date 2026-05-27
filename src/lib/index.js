@@ -1,1 +1,4 @@
-// place files you want to import through the `$lib` alias in this folder.
+// components
+export { default as FavoritesList } from './components/Organisms/FavoritesList.svelte'
+export { default as WeatherCard } from './components/Organisms/WeatherCard.svelte'
+export { default as WeatherSearch } from './components/Molecules/WeatherSearch.svelte'
