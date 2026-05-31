@@ -1,4 +1,4 @@
- <script>
+<script>
   import { supabase } from "$lib/supabaseClient";
   import { onMount } from "svelte";
 
@@ -31,8 +31,10 @@
 
     try {
       // Call weather API
+      const apiKey = import.meta.env.VITE_WEATHER_API_KEY;
+
       const res = await fetch(
-        `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=712c664b4430d30580f2d2e27501801d&units=metric`
+        `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`,
       );
 
       const data = await res.json();
@@ -76,7 +78,7 @@
 
     // Prevent duplicates
     const exists = favorites.some(
-      (f) => f.city.toLowerCase() === weather.name.toLowerCase()
+      (f) => f.city.toLowerCase() === weather.name.toLowerCase(),
     );
 
     if (exists) return;
@@ -113,7 +115,7 @@
       <h1>Weather App</h1>
     </header>
 
-     <!-- Search component -->
+    <!-- Search component -->
     <WeatherSearch bind:city {getWeather} />
 
     <!-- Error display -->
