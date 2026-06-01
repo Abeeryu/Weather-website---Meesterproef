@@ -15,15 +15,12 @@
   let loading = $state(false);
 
   // Fetch weather data from OpenWeather API
-  async function getWeather(event) {
-    console.log("CITY:", city);
-    event.preventDefault();
-
+  async function getWeather(cityName) {
     error = "";
     loading = true;
 
     // Validate input
-    if (!city.trim()) {
+    if (!cityName.trim()) {
       error = "Please enter a city";
       loading = false;
       return;
@@ -34,7 +31,7 @@
       const apiKey = import.meta.env.VITE_WEATHER_API_KEY;
 
       const res = await fetch(
-        `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`,
+        `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${apiKey}&units=metric`,
       );
 
       const data = await res.json();
