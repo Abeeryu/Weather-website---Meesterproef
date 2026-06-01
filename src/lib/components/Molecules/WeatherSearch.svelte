@@ -1,11 +1,15 @@
 <script>
     let { city = $bindable(), getWeather } = $props();
+    function handleSubmit(event) {
+  event.preventDefault();
+  getWeather(city);
+}
 </script>
 
-<form class="search" onsubmit={getWeather}>
+<form class="search" onsubmit={handleSubmit}>
     <label for="city" class="sr-only"> Enter city </label>
 
-    <input id="city" bind:value={city} placeholder="Enter city" />
+    <input id="city" name="city" bind:value={city} placeholder="Enter city" />
 
     <button type="submit">Search</button>
 </form>
