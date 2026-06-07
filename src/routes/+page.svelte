@@ -106,6 +106,10 @@
   }
 </script>
 
+<svelte:head>
+	<title>Weather App</title>
+</svelte:head>
+
 <main class="weather-app">
   <div class="container">
     <header>

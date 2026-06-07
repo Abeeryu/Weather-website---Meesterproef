@@ -33,7 +33,7 @@
     padding: 14px;
     border-radius: 14px;
     background: white;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+	  border: 1px solid #cbd5e1;
     transition: 0.2s;
 
     &:hover {
@@ -42,8 +42,8 @@
 
     .delete-btn {
       background: transparent;
-      border: 1px solid #ef4444;
-      color: #ef4444;
+      border: 1px solid #AE0F0F;
+      color: #AE0F0F;
       padding: 6px 12px;
       border-radius: 10px;
       cursor: pointer;
