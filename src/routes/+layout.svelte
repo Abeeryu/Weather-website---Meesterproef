@@ -1,6 +1,6 @@
 <script>
-	import favicon from '$lib/assets/favicon.svg';
-	import '$lib/assets/styles/general.css'
+	import favicon from "$lib/assets/favicon.svg";
+	import "$lib/assets/styles/general.css";
 
 	let { children } = $props();
 </script>
@@ -10,3 +10,4 @@
 </svelte:head>
 
 {@render children()}
+

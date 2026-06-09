@@ -107,7 +107,7 @@
 </script>
 
 <svelte:head>
-	<title>Weather App</title>
+  <title>Weather App</title>
 </svelte:head>
 
 <main class="weather-app">
@@ -179,6 +179,9 @@
     @media (prefers-color-scheme: dark) {
       background: #0b1220;
       color: #e2e8f0;
+    }
+    h1 {
+      color: #f8fafc;
     }
   }
 </style>
