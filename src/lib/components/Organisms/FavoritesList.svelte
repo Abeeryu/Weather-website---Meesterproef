@@ -21,10 +21,23 @@
 {/if}
 
 <style>
+
+h2 {
+  margin-top: 24px;
+  margin-bottom: 12px;
+}
+
+.empty {
+  margin-top: 8px;
+}
+
 .favorite {
   display: grid;
   gap: 12px;
-  margin-top: 15px;
+  margin-top: 20px;
+  padding: 16px;
+  border-radius: 14px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
 
   .favorite-city {
     display: flex;
@@ -57,7 +70,20 @@
     }
   }
 
+  @media (max-width: 500px) {
+  .favorite-city {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .delete-btn {
+    align-self: flex-end;
+  }
+}
+
+
   @media (prefers-color-scheme: dark) {
+    
     .favorite-city {
       background: #111827;
       border: 1px solid #1f2937;

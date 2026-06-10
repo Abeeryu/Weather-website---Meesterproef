@@ -18,6 +18,7 @@
   .search {
     display: flex;
     flex-direction: column;
+    align-items: center;
     gap: 10px;
     margin-top: 20px;
     padding: 16px;
@@ -44,12 +45,12 @@
     }
 
     input {
-      padding: 12px;
-      font-size: 16px;
-      border: 1px solid #e2e8f0;
-      border-radius: 10px;
-      outline: none;
-      transition: 0.2s;
+  width: 100%;
+  min-width: 0;
+  padding: 12px;
+  font-size: 16px;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
 
       &:focus {
         border-color: #2563eb;
